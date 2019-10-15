@@ -6,4 +6,6 @@ Multiply has a recipe site.  This site displays a single recipe currently -- Cho
 
 The comments and votes do not need to be visible to other users on the site, but it would be a nice-to-have if they persisted for the given browser's session.
 
+This project is implemented with React hooks, please use hooks to complete the objectives. 
+
 You can be as creative as you wish as to how you implement these features.  The finished app may or may not be styled.
