@@ -12,11 +12,10 @@ function App() {
   return (
     <div className="App">
       <RecipeMeta 
-        title={recipe.title} 
+      /*   title={recipe.title} 
         time={recipe.timeToMake} 
-        servings={recipe.servings} 
+        servings={recipe.servings}  */
       />
-      <RecipeIngredients ingredients={recipe.ingredients} />
       <RecipeSteps steps={recipe.steps} /> 
     </div>
   );
