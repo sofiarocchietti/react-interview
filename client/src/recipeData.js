@@ -1,5 +1,5 @@
 export default () => {
-    return {
+    return { 
     title: 'Chocolate Chip Coookies',
     timeToMake: '1 hour',
     servings: 24,
