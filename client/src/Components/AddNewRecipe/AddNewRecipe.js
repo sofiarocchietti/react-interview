@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import './AddRecipe.css';
-import { validate } from './error';
+import { useDispatch } from 'react-redux';
+import './AddNewRecipe.css';
+import { validate } from './errors';
 
 const AddNewRecipe = () => {
+  const dispatch = useDispatch()
     const [input, setInput] = useState({
         title: '',
         timeToMake: '',
@@ -10,6 +12,8 @@ const AddNewRecipe = () => {
         ingredients: [],
         steps: []
      }); 
+
+     const [errors, setErrors] = useState({}); 
 
      const handleInputChange = (e) => {
           setInput({
@@ -26,7 +30,7 @@ const AddNewRecipe = () => {
 
       const handleSubmit = (e) => {
         e.preventDefault()
-          if(Object.keys(errors).length === 0)
+          /* if(Object.keys(errors).length === 0)
           {dispatch(createRecipe(input))
             alert("Your delicious recipe has been created!")
           setInput({
@@ -38,7 +42,7 @@ const AddNewRecipe = () => {
             })
           } else {
             alert("Some ingredients are missing :(")
-          }
+          } */
       }
 
     return (
@@ -66,14 +70,12 @@ const AddNewRecipe = () => {
               <input
               onChange={handleInputChange}
               className={`${errors.spoonacularScore && "danger"}`}
-                type="number"
-                min="0"
-                max="99"
-                name="spoonacularScore"
+                type="text"
+                name="ingredients"
                 value={input.ingredients}
               />
-              {errors.spoonacularScore && (
-                <p className="danger">{errors.spoonacularScore}</p>
+              {errors.ingredients && (
+                <p className="danger">{errors.ingredients}</p>
                   )} 
                   </div> 
               <div>
@@ -104,24 +106,6 @@ const AddNewRecipe = () => {
             <div>
                 <label className="text_title_form">Image</label>
                 <input type="url" name="image" placeholder= "Insert an URL Image" value={input.image} onChange={handleInputChange} className="text_input"/>
-                  </div>
-            <div className="diets_checkbox">
-            <label className="text_title_form">Choose your diets</label>
-              <div className="map_diets">
-                {diets.map((diet) =>
-                <span className="keys" key={diet.name}>
-                  <input
-                      className="input_diets"
-                      type="checkbox"
-                      name="diets"
-                      value={diet.id}
-                      onChange={handleCheckbox}
-                    />
-                    <label name={diet}>{diet.name}</label>
-                  </span>
-                )
-                }
-                </div> 
               </div>
             <button className="submit_button" type="submit">
             Submit

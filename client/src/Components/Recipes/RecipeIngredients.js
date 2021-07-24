@@ -8,7 +8,7 @@ function RecipeIngredients(props) {
             <h1>Ingredients</h1>
             {props.ingredients.map((ingredient, index) => 
                (
-                   <div>
+                   <div key={index}>
                    <li className="ingredient">
                        <strong>{ingredient.name}</strong>: {ingredient.amount} {ingredient.measure}
                        <Comments />

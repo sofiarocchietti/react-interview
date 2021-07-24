@@ -65,17 +65,27 @@ let id = 2;
 
 function getAllRecipes(req, res, next) {
     return res.send(recipes);
+    
+}
+
+function getRecipeById(req, res, next) {
+  const { id } = req.params;
+  if (!id) return res.status(400).send('Please, enter an ID')
+  const recipe = recipes.find(a => a.id === parseInt(id)); 
+  if (!recipe) return res.status(400).send('Recipe not found');
+  return res.send(recipe)
 }
 
 function addNewRecipe(req, res, next) {
-    const { title, timeToMake, servings, ingredients, name, amount, measure } = req.body;
+    const { title, timeToMake, servings, ingredients, steps } = req.body;
     if (!title || !timeToMake || !servings) return res.status(400).send('Missing arguments')
     recipes.push ({
         id: id++,
         title,
         timeToMake,
         servings,
-        ingredients
+        ingredients,
+        steps
     })
     //let recipeNew = {...newRecipe, ingredients2}
     res.send(recipes)
@@ -85,6 +95,9 @@ function addNewRecipe(req, res, next) {
 function deleteRecipe (req, res, next) {
     const {id} = req.params
     const index = recipes.findIndex(a => a.id === parseInt(id))
+    if (!index) {
+      return res.status(400).send('ID not found')
+    }
     recipes.splice(index, 1)
     return res.json(recipes)
 }
@@ -93,15 +106,17 @@ function deleteRecipe (req, res, next) {
 
 function editRecipe (req, res) { 
     const { id } = req.params
-    const { title, timeToMake, servings } = req.body
+    const { title, timeToMake, servings, ingredients, steps } = req.body
     const recipe = recipes.find(a => a.id === parseInt(id)); 
     if (!recipe) {
-      return res.status(400).send('El ID no se encontró kpo')
+      return res.status(400).send('ID not found')
     }
     if (recipe) {
         recipe.title = title || recipe.title; 
         recipe.timeToMake = timeToMake || recipe.timeToMake; 
         recipe.servings = servings || recipe.servings; 
+        recipe.ingredients = ingredients || recipe.ingredients; 
+        recipe.steps = steps || recipe.steps; 
         res.json(recipe); 
     }
   }
@@ -110,5 +125,6 @@ module.exports ={
     getAllRecipes,
     addNewRecipe,
     deleteRecipe,
-    editRecipe
+    editRecipe,
+    getRecipeById
 }

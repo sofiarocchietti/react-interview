@@ -1,24 +1,18 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllRecipes } from '../../Redux/Actions';
 import RecipeIngredients from './RecipeIngredients';
 import RecipeSteps from './RecipeSteps';
+import Nav from '../Nav/Nav';
 
 
-function RecipeMeta() {
-    const { recipes } = useSelector (state => state)
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getAllRecipes())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+function RecipeMeta({recipes}) {
+   
     return (
         <div className="recipe-meta">
-            {
-                recipes?.map((recipe) => {
-                    return (
             <div>
+            {
+                recipes?.map((recipe, index) => {
+                    return (
+            <div key={index}>
             <h1>{recipe.title}</h1>
             <div>
                 <p>Time: {recipe.timeToMake}</p>
@@ -30,6 +24,7 @@ function RecipeMeta() {
                     )
                 })
             }
+            </div>
         </div>
     )
 }
