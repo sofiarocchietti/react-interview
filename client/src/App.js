@@ -1,22 +1,15 @@
 import React from 'react';
 import './App.css';
-import RecipeMeta from './Components/RecipeMeta';
-import RecipeIngredients from './Components/RecipeIngredients';
-import RecipeSteps from './Components/RecipeSteps';
-import recipeData from './recipeData'
+import { Route } from 'react-router-dom';
+import RecipeMeta from './Components/Recipes/RecipeMeta';
+
 
 function App() {
 
-  const recipe = recipeData()
 
   return (
     <div className="App">
-      <RecipeMeta 
-      /*   title={recipe.title} 
-        time={recipe.timeToMake} 
-        servings={recipe.servings}  */
-      />
-      <RecipeSteps steps={recipe.steps} /> 
+   <Route exact path='/home' component={RecipeMeta}/>
     </div>
   );
 }

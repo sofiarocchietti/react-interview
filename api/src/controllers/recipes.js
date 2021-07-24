@@ -1,6 +1,3 @@
-const { Recipe, Diet } = require('../db');
-const { v4: uuidv4 } = require('uuid');
-const axios = require('axios').default;
 let recipes = [ { 
     id: 1,
     title: 'Chocolate Chip Coookies',
@@ -73,7 +70,16 @@ function getAllRecipes(req, res, next) {
 function addNewRecipe(req, res, next) {
     const { title, timeToMake, servings, ingredients, name, amount, measure } = req.body;
     if (!title || !timeToMake || !servings) return res.status(400).send('Missing arguments')
-  
+    recipes.push ({
+        id: id++,
+        title,
+        timeToMake,
+        servings,
+        ingredients
+    })
+    //let recipeNew = {...newRecipe, ingredients2}
+    res.send(recipes)
+    console.log(recipes)
 }
 
 function deleteRecipe (req, res, next) {

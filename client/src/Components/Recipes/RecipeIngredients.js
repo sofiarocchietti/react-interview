@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllRecipes } from '../Redux/Actions';
-import Comments from './Comments'
+import React from 'react';
+import Comments from '../Comments'
 
 function RecipeIngredients(props) {
     console.log('ingrediente', props.ingredients)
