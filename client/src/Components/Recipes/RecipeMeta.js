@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllRecipes } from '../Redux/Actions';
+import { getAllRecipes } from '../../Redux/Actions';
 import RecipeIngredients from './RecipeIngredients';
+import RecipeSteps from './RecipeSteps';
 
 
 function RecipeMeta() {
@@ -24,6 +25,7 @@ function RecipeMeta() {
                 <p>Servings: {recipe.servings}</p>
             </div>
             <RecipeIngredients ingredients={recipe.ingredients} />
+            <RecipeSteps steps={recipe.steps} /> 
                         </div>
                     )
                 })
