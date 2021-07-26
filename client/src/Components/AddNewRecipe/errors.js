@@ -11,7 +11,13 @@ export function validate (input) {
       errors.summary = 'Time to make is required'
     }
     if (typeof(input.servings) !== Number) {
-      errors.servings = 'Score must be a number'
+      errors.servings = 'Servings must be a number'
+    }
+    if (input.steps.length < 1) {
+      errors.steps = 'Steps are required'
+    }
+    if (input.ingredients.length < 1) {
+      errors.ingredients = 'Ingredients are required'
     }
     return errors
   }
