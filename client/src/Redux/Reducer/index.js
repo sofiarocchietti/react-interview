@@ -1,8 +1,9 @@
-import { GET_ALL_RECIPES } from "../Actions/constants";
+import { GET_ALL_RECIPES, VERIFY_USER } from "../Actions/constants";
 
 const initialState = {
     recipes: [],
     ingredients: [],
+    user: {}
 }
 
 function rootReducer(state = initialState, action) {
@@ -12,6 +13,13 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 recipes: action.payload
               }
+        }
+        
+        case VERIFY_USER: {
+            return {
+                ...state,
+                user: action.payload
+            }
         }
         default:
          return state 

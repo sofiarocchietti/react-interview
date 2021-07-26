@@ -10,7 +10,6 @@ const Home = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllRecipes())
-   
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

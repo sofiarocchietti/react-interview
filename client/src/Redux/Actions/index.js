@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ADD_NEW_RECIPE } from './constants'
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER } from './constants'
 import axios from 'axios'
 
 export function getAllRecipes () {
@@ -40,4 +40,15 @@ export const addNewRecipe = (recipe) => dispatch => {
       dispatch({ type: ADD_NEW_RECIPE, payload: response.data })
     })
     .catch((error) => console.error(error))
+}
+
+export function verifyUser (obj) {
+  return (dispatch) => fetch('http://localhost:3001/users/user')
+    .then((response) => response.json(obj))
+    .then((json) => {
+      dispatch({
+        type: VERIFY_USER,
+        payload: json
+      })
+    })
 }

@@ -30,7 +30,7 @@ const AddNewRecipe = () => {
 
       const handleSubmit = (e) => {
         e.preventDefault()
-          /* if(Object.keys(errors).length === 0)
+           /* if(Object.keys(errors).length === 0)
           {dispatch(createRecipe(input))
             alert("Your delicious recipe has been created!")
           setInput({
@@ -42,7 +42,7 @@ const AddNewRecipe = () => {
             })
           } else {
             alert("Some ingredients are missing :(")
-          } */
+          }  */
       }
 
     return (

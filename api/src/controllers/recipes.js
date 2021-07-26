@@ -55,7 +55,8 @@ let recipes = [ {
       "Stir in flour and chocolate chips",
       "Drop large spoonfuls onto ungreased pans",
       "Bake for aobut 10 minutes in preheated oven, or until edges are nicely browned"
-    ]
+    ],
+    likes: 0
   },
 ]
 
@@ -63,10 +64,6 @@ let id = 2;
 
 
 
-function getAllRecipes(req, res, next) {
-    return res.send(recipes);
-    
-}
 
 function getRecipeById(req, res, next) {
   const { id } = req.params;
@@ -74,6 +71,11 @@ function getRecipeById(req, res, next) {
   const recipe = recipes.find(a => a.id === parseInt(id)); 
   if (!recipe) return res.status(400).send('Recipe not found');
   return res.send(recipe)
+}
+
+function getAllRecipes(req, res, next) {
+    return res.send(recipes);
+    
 }
 
 function addNewRecipe(req, res, next) {
@@ -92,6 +94,18 @@ function addNewRecipe(req, res, next) {
     console.log(recipes)
 }
 
+function incrementAndDecrement (req, res) {
+  const { id } = req.params;
+  const { numberOfLikes } = req.body;
+  if (!numberOfLikes) return res.status(400).send('numberOfLikes is required')
+  if(parseInt(numberOfLikes) !== 0) {
+    recipes.map(r => r.id === parseInt(id) && r.likes++) 
+  } else {
+    recipes.map(r => r.id === parseInt(id) && r.likes--) 
+  }
+  return res.send('Likes updated')
+}
+
 function deleteRecipe (req, res, next) {
     const {id} = req.params
     const index = recipes.findIndex(a => a.id === parseInt(id))
@@ -101,8 +115,6 @@ function deleteRecipe (req, res, next) {
     recipes.splice(index, 1)
     return res.json(recipes)
 }
-
-
 
 function editRecipe (req, res) { 
     const { id } = req.params
@@ -126,5 +138,6 @@ module.exports ={
     addNewRecipe,
     deleteRecipe,
     editRecipe,
-    getRecipeById
+    getRecipeById,
+    incrementAndDecrement
 }

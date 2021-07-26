@@ -10,6 +10,16 @@ export default function Nav () {
           Create Recipe
         </button>
       </NavLink>
+      <NavLink to={`/login`}>
+        <button className='create_button' type='submit'>
+          Login
+        </button>
+      </NavLink>
+      <NavLink to={`/home`}>
+        <button className='create_button' type='submit'>
+          Home
+        </button>
+      </NavLink>
     </div>
   )
 }
