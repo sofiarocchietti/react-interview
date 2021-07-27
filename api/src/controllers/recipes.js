@@ -76,12 +76,11 @@ function getAllRecipes (req, res, next) {
 }
 
 function addNewRecipe (req, res, next) {
-  const { title, timeToMake, servings, ingredients, steps, img, likes } = req.body
+  const { title, timeToMake, servings, ingredients, steps, img } = req.body
   if (!title ) return res.status(400).send('Missing arguments')
   //|| !timeToMake || !servings
   recipes.push({
     id: id++,
-    likes,
     title,
     img,
     timeToMake,
@@ -96,7 +95,6 @@ function addNewRecipe (req, res, next) {
 function incrementAndDecrement (req, res) {
   const { id } = req.params
   const { numberOfLikes } = req.body
-  if (!numberOfLikes) return res.status(400).send('numberOfLikes is required')
   if (parseInt(numberOfLikes) !== 0) {
     recipes.map(r => r.id === parseInt(id) && r.likes++)
   } else {
