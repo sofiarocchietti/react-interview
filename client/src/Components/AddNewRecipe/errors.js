@@ -10,8 +10,8 @@ export function validate (input) {
     } else if (!/([A-Z]|[a-z])|\w+/.test(input.summary)) {
       errors.summary = 'Time to make is required'
     }
-    if (typeof(input.servings) !== Number) {
-      errors.servings = 'Servings must be a number'
+    if (!input.servings) {
+      errors.servings = 'Servings is required'
     }
     if (input.steps.length < 1) {
       errors.steps = 'Steps are required'

@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './AddNewRecipe.css';
 import { addNewRecipe } from '../../Redux/Actions';
-import Nav from '../Nav/Nav';
+/* import Nav from '../Nav/Nav'; */
 import { validate } from './errors';
 
 const AddNewRecipe = () => {
   const dispatch = useDispatch()
     const [input, setInput] = useState({
         title: '',
-        image: '',
+        likes: 0,
+        img: '',
         timeToMake: '',
         servings: 0,
         ingredients: [],
@@ -21,6 +22,8 @@ const AddNewRecipe = () => {
       amount: 0,
       measure: ''
     });
+
+     const [step, setStep] = useState('')
 
      const [errors, setErrors] = useState({}); 
 
@@ -45,37 +48,43 @@ const AddNewRecipe = () => {
         })
       }
 
-      const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(addNewRecipe(input))
-         if(Object.keys(errors).length === 0)
-          {dispatch(addNewRecipe(input))
-            alert("Your delicious recipe has been created!")
-          setInput({
-            title: '',
-            image: '',
-            timeToMake: '',
-            servings: 0,
-            ingredients: [],
-            steps: []
-            })
-          } else {
-            alert("Some ingredients are missing :(")
-          }   
+      const handleStepChange = (e) => {
+        console.log('el step es ', e.target.value);
+        setStep(e.target.value)
       }
 
+      
       const deleteIngredient = (e) => {
         // elimino del array de input.ingredients
         e.preventDefault()
         setInput({
           ...input,
-          ingredients: input.ingredients.filter((objeto, index) => objeto.name !== e.target.name)
+          ingredients: input.ingredients.filter((objeto, index) => objeto[index] !== e.target.value)
         })}
+
+        const handleSubmit = (e) => {
+          e.preventDefault()
+          dispatch(addNewRecipe(input))
+           if(Object.keys(errors).length === 0)
+            {dispatch(addNewRecipe(input))
+              alert("Your delicious recipe has been created!")
+            setInput({
+              title: '',
+              img: '',
+              timeToMake: '',
+              servings: 0,
+              ingredients: [],
+              steps: []
+              })
+            } else {
+              alert("Some ingredients are missing :(")
+            }   
+        }
       
 
     return (
-        <div className="add_recipe_container">
-          <Nav/>
+      <div className="add_recipe_container_container">
+      <div className="add_recipe_container">
        <h1 className="h1_title">Recipe Creator: </h1>
        <form onSubmit={(e) => handleSubmit(e)}
        className="recipe_form"
@@ -97,8 +106,8 @@ const AddNewRecipe = () => {
               <label className="text_title_form">Servings:</label>
               <input
                 onChange={handleInputChange}
-                className={`${errors.title && "danger"}`}
-                type="text"
+                className={`${errors.servings && "danger"}`}
+                type="number"
                 name="servings"
                 value={input.servings}
               />
@@ -110,9 +119,9 @@ const AddNewRecipe = () => {
               <label className="text_title_form">Time:</label>
               <input
                 onChange={handleInputChange}
-                className={`${errors.time && "danger"}`}
+                className={`${errors.timeToMake && "danger"}`}
                 type="text"
-                name="servings"
+                name="timeToMake"
                 value={input.timeToMake}
               />
               {errors.timeToMake && (
@@ -141,11 +150,9 @@ const AddNewRecipe = () => {
                 name="amount"
                 value={ingredient.amount}
               />
-             
             </div>
             <div>
-        
-          <div>
+          <div className= 'options'>
             <select id="select_id" name="measure" onChange={handleIngredientChange}>
            {['unit','cup','cups','teaspoon', 'teaspoons', 'oz', 'ml','liters', 'spoon', 'spoons'].map((m, index) => (
             <option value={m} key={index}>{m}</option>
@@ -162,21 +169,51 @@ const AddNewRecipe = () => {
              }>
               Add ingredient
             </button>
-            <div>
+            <div className= 'options'>
               {input.ingredients?.map((e, index) =>
                 <button onClick={deleteIngredient} value={index}>{e.name} {e.amount} {e.measure}</button>
                 )}
             </div>
-
+            <div>
+              <label className="text_title_form">Steps:</label>
+              <input
+                onChange={handleStepChange}
+                //className={`${errors.step && "danger"}`}
+                type="text"
+                //name="steps"
+                value={step}
+              />
+            {/*   {errors.steps && (
+                <p className="danger">{errors.steps}</p>
+                  )}  */}
+            </div>
+            <button onClick={(e)=> {
+              e.preventDefault()
+              setInput({
+                ...input,
+               steps: [...input.steps, step],
+                })
+            }
+             }>
+              Add step
+            </button>
+            
+            <div>
+                {input.steps?.map((e, index) =>
+                <button onClick={handleStepChange} value={index}>{e}</button>
+                )}  
+            </div>
+            <div></div>
           </div>
             <div>
                 <label className="text_title_form">Image</label>
-                <input type="url" name="image" placeholder= "Insert an URL Image" value={input.image} onChange={handleInputChange} className="text_input"/>
+                <input type="url" name="img" placeholder= "Insert an URL Image" value={input.img} onChange={handleInputChange} className="text_input"/>
               </div>
             <button className="submit_button" type="submit">
             Submit
           </button>
        </form>
+      </div>
       </div>
     )
 }

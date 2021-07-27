@@ -1,0 +1,85 @@
+.add_recipe_container_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.add_recipe_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    width: 50%;
+    flex-direction: column;
+    background-color: hsla(0,0%,94.1%,.8);
+    border-radius: 16px;
+    border: 1.6px solid hsla(0,0%,100%,.4);
+    box-shadow: 3px 3px 16px rgb(20 20 20 / 80%);
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+}
+
+.add_recipe_container button{
+    margin: 1.5rem;
+}
+
+.add_recipe_container select{
+    display: flex;
+    margin-left: 2rem;
+}
+
+.danger{
+    color: red;
+}
+
+.add_recipe_container input {
+    display: block;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    max-width: 35%;
+}
+
+
+.h1_title{
+    margin-top: 100px;
+    font-family: 'Lobster Two', cursive;
+    text-shadow: -1px 0 black, 5px 5px black, 1px 0 black, 0 5px black;
+    text-shadow: 2px 2px 5px #000000;
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+    margin-top: 0rem;
+}
+
+.text_title_form{
+    font-family: 'Fredoka One', cursive;
+    margin-top: 12px;
+    margin-bottom: 9px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.map_diets{
+    font-family: 'Fredoka One', cursive;
+}
+
+.submit_button{
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-self: center;
+}
+
+.options{
+    max-width: 50%;
+}
