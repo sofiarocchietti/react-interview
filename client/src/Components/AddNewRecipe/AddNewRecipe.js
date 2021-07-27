@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './AddNewRecipe.css';
 import { addNewRecipe } from '../../Redux/Actions';
-/* import Nav from '../Nav/Nav'; */
+import swal from 'sweetalert';
 import { validate } from './errors';
 
 const AddNewRecipe = () => {
@@ -66,7 +66,13 @@ const AddNewRecipe = () => {
           e.preventDefault()
            if(Object.keys(errors).length === 0)
             {dispatch(addNewRecipe(input))
-              alert("Your delicious recipe has been created!")
+              swal({
+                icon: "success",
+                title: "Your delicious recipe has been created!",
+                text: "  ",
+                button: null,
+                timer: 2000
+            });
             setInput({
               title: '',
               img: '',
@@ -76,7 +82,13 @@ const AddNewRecipe = () => {
               steps: []
               })
             } else {
-              alert("Some ingredients are missing :(")
+              swal({
+                icon: "error",
+                title: "Some ingredients are missing :(",
+                text: "  ",
+                button: null,
+                timer: 2000
+            });
             }   
         }
       
