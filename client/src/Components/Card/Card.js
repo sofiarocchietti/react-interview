@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Likes from '../Likes';
+import Likes from '../Likes/Likes'
 import './Card.css';
 
 const Card = (props) => {

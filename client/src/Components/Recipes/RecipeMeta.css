@@ -1,0 +1,30 @@
+.recipe-meta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.recipe-meta-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 50rem;
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+    background-color: hsla(0,0%,94.1%,.8);
+    border-radius: 16px;
+    border: 1.6px solid hsla(0,0%,100%,.4);
+    box-shadow: 3px 3px 16px rgb(20 20 20 / 80%);
+} 
+
+.recipe-meta-container-img img{
+    border-radius: 16px;
+    height: 192px;
+    width: 250px;
+    object-fit: cover;
+    object-position: center center;
+    box-shadow: 3px 3px 5px rgb(20 20 20 / 80%);
+}

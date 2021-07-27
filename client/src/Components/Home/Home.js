@@ -19,7 +19,7 @@ const Home = () => {
             <div>
                 <Nav/>
             </div>
-            <div className= 'recipe-meta-container'>
+            <div className= 'recipe-meta-container-home'>
                 <Cards recipes={recipes}/>
             </div>
         </div>

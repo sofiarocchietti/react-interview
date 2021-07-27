@@ -16,8 +16,5 @@ export function validate (input) {
     if (input.steps.length < 1) {
       errors.steps = 'Steps are required'
     }
-    if (input.ingredients.length < 1) {
-      errors.ingredients = 'Ingredients are required'
-    }
     return errors
   }

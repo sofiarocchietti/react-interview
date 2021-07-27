@@ -20,6 +20,7 @@ function App() {
    <Route exact path='/addRecipe' component={Nav}/>
    <Route exact path='/addRecipe' component={AddNewRecipe}/>
    <Route exact path='/login' component={Login}/>
+   <Route exact path='/recipes/:id' component={Nav}/>
    <Route exact path='/recipes/:id' component={RecipeMeta}/>
    <Route  path='/' component={Footer}/>
     </div>

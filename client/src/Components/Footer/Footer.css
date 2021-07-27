@@ -6,7 +6,7 @@
 	animation-duration: 2s;
    background-color: #f1b6b8;
     box-shadow: 0 0 20px rgb(88, 86, 86);
-    height: 4rem;
+    height: 5rem;
     width: 100%;
     top: 0;
     left: 0;
@@ -16,7 +16,8 @@
     align-items: center;
     justify-content: space-around;
     align-items: center;
-    padding: 0 20px;
+    padding: 10px 22px;
+
     box-sizing: border-box;
 }
 
@@ -26,7 +27,7 @@
     position: relative;
     top: 8px; 
     right: 100px;
- 
+    margin-bottom: 1rem;
 }
 
 .image1:hover{
@@ -40,6 +41,7 @@
     position: relative;
     top: 8px; 
     left: 100px;
+    margin-bottom: 1rem;
 }
 
 .image2:hover{
