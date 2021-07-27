@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER } from './constants'
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, GET_RECIPE_DETAIL } from './constants'
 import axios from 'axios'
 
 export function getAllRecipes () {
@@ -32,9 +32,9 @@ export function getAllRecipes () {
  */
 
 export const addNewRecipe = (recipe) => dispatch => {
-  let recipes = JSON.parse(localStorage.setItem('recipes') || '[]')
-  localStorage.setItem('recipes', JSON.stringify(recipe))
-  recipes.push(recipe)
+  /* let recipes = JSON.parse(localStorage.getItem('recipes') || '[]')
+  console.log(recipes)
+  localStorage.setItem('recipes', JSON.stringify(recipe)) */
   return axios.post('http://localhost:3001/recipes', recipe)
     .then((response) => {
       dispatch({ type: ADD_NEW_RECIPE, payload: response.data })
@@ -51,4 +51,17 @@ export function verifyUser (obj) {
         payload: json
       })
     })
+}
+
+export function getRecipeDetail(id) {
+  return function (dispatch) {
+    return fetch(`http://localhost:3001/recipes/${id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(id)
+        dispatch({ 
+          type: GET_RECIPE_DETAIL, 
+          payload: json });
+      })
+  }
 }
