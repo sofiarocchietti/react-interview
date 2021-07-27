@@ -42,9 +42,23 @@
 .options{
     display: flex;
     flex-direction: column;
-    max-width: 35%;
+    max-width: 20%;
+    margin: auto;
 }
 
+.step_button{
+    width: 9rem;
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: auto;
+}
+
+.ing_button{
+    width: 9rem;
+    height: 3rem;
+}
 
 .h1_title{
     margin-top: 100px;

@@ -62,9 +62,8 @@ const AddNewRecipe = () => {
           ingredients: input.ingredients.filter((objeto, index) => objeto[index] !== e.target.value)
         })}
 
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
           e.preventDefault()
-          dispatch(addNewRecipe(input))
            if(Object.keys(errors).length === 0)
             {dispatch(addNewRecipe(input))
               alert("Your delicious recipe has been created!")
@@ -171,7 +170,7 @@ const AddNewRecipe = () => {
             </button>
             <div className= 'options'>
               {input.ingredients?.map((e, index) =>
-                <button onClick={deleteIngredient} value={index}>{e.name} {e.amount} {e.measure}</button>
+                <button className='ing_button' onClick={deleteIngredient} value={index}>{e.name} {e.amount} {e.measure}</button>
                 )}
             </div>
             <div>
@@ -200,7 +199,7 @@ const AddNewRecipe = () => {
             
             <div>
                 {input.steps?.map((e, index) =>
-                <button onClick={handleStepChange} value={index}>{e}</button>
+                <button className='step_button' onClick={handleStepChange} value={index}>{e}</button>
                 )}  
             </div>
             <div></div>

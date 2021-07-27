@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRecipeDetail } from '../../Redux/Actions'
 import RecipeIngredients from './RecipeIngredients'
 import RecipeSteps from './RecipeSteps'
-import Likes from '../Likes';
-import Nav from '../Nav/Nav'
+import Likes from '../Likes/Likes';
+import './RecipeMeta.css'
 
 function RecipeMeta ({match}) {
   const recipe = useSelector((state) => state.recipeDetail)
@@ -34,13 +34,17 @@ function RecipeMeta ({match}) {
 
   return (
     <div className='recipe-meta'>
-      <Nav/>
-      <div>
+      <div className='recipe-meta-container'>
         {recipe.title && <div>
           <h1>{recipe.title}</h1>
           <div>
+            <div> 
+              <div className='recipe-meta-container-img'> 
+            <img src={recipe.img ? recipe.img : 'image not found'} alt="picture" />
+              </div>
+            </div>
             <p>
-              Time:
+              Time: 
               {recipe.timeToMake}
             </p>
             <p>

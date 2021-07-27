@@ -3,9 +3,32 @@
     align-content: center;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  
+    width: 100%;
+    height:91.5vh;
+    font-size: 2rem;
 }
 
+.login_container form {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;  
+    width: 40%;
+    height: 15rem;
+    flex-direction: column;
+    background-color: hsla(0,0%,94.1%,.8);
+    border-radius: 16px;
+    border: 1.6px solid hsla(0,0%,100%,.4);
+    box-shadow: 3px 3px 16px rgb(20 20 20 / 80%);
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+}
+
+.login_container p {
+    font-size: 1rem;
+}
 .danger{
     color: red;
 }

@@ -1,6 +1,9 @@
-import React, { useEffect, useState, getState } from 'react';
+import React, {useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeLikes, getAllRecipes, getRecipeDetail } from './../Redux/Actions';
+import { changeLikes, getAllRecipes, getRecipeDetail } from '../../Redux/Actions';
+import like from '../../img/like.png';
+import dislike from '../../img/dislike.png';
+import './Likes.css'
 
 
 const Likes = ({ likes, id }) => {
@@ -14,13 +17,15 @@ const Likes = ({ likes, id }) => {
         dispatch(getAllRecipes())
         numberOfLikes === 1 ? setNumberOfLikes(0) : setNumberOfLikes(1);
     }
-    // const likesUpdate = getState().recipeDetail;
 
     return (
-        <div>
+        <div className='likes_container'>
             { likes }
             <button onClick={liking}>
-                {numberOfLikes === 1 ? 'LIKE' : 'DISLIKE'}
+                {numberOfLikes === 1 ? (
+                   <img src={dislike} alt=''/> ) : 
+                    <img src={like}alt=''/>
+                }
             </button>
         </div>
     )

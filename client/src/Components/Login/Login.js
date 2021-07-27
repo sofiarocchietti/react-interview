@@ -62,7 +62,9 @@ const handleSubmit = (e) => {
           <p className="danger">{errors.password}</p>
        )}
        </div>
-       <input type= "submit" value= "Submit"/>
+       <button className="submit_button" type="submit">
+            Submit
+          </button>
       </form>
     </div>
   )
