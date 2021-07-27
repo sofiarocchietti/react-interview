@@ -1,5 +1,6 @@
 let users = [
     {id: 1,
+    name: 'Sofi', 
     email: 'sofiadvr19@gmail.com',
     password: 'password'},
 ]
@@ -11,12 +12,13 @@ function getAllUsers(req, res) {
 }
 
 function addNewUser(req, res) {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).send('Missing arguments')
+    const { email, password, name } = req.body;
+    if (!email || !password || !name) return res.status(400).send('Missing arguments')
     const user = users.find(u => u.email === email)
     if (user) return res.status(400).send('That mail already exists')
     users.push ({
         id: id++,
+        name,
         email,
         password
     })

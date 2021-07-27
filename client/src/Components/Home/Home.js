@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllRecipes } from '../../Redux/Actions';
 import RecipeMeta from '../Recipes/RecipeMeta';
 import Nav from '../Nav/Nav';
+import Cards from '../Cards/Cards';
 import './Home.css';
 
 const Home = () => {
@@ -19,7 +20,7 @@ const Home = () => {
                 <Nav/>
             </div>
             <div className= 'recipe-meta-container'>
-            <RecipeMeta recipes={recipes}/>
+                <Cards recipes={recipes}/>
             </div>
         </div>
     )
