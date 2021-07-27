@@ -46,37 +46,9 @@
     font-family: 'Fredoka One', cursive;
 }
 
-.diets_card{
-    text-align: justify;
-    font-family: 'Fredoka One', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 50px;
-    margin: 10px;
-    flex-wrap: wrap;
-    -webkit-justify-content: space-evenly;
-    -webkit-align-items: center;
-    -webkit-flex-wrap: wrap;
-    
-}
-
-.diets_card span{
-    font-size: 15px;
-    margin: 0.5px;
-    padding: 0px 4px;
-    margin-right: 5px;
-    margin-bottom: 7px;
-    border-radius: 4px;
-    background-color: #f0d9b9;
-    box-shadow: 3px 3px 5px rgb(20 20 20 / 80%);
-
-}
 
 .button_card{
     font-family: 'Fredoka One', cursive;
-    background-image: linear-gradient(to right, #f7e5cc 0%, #e7caa3  51%, #ecd9bd  100%);
     font-size: 17px;
     position: absolute;
     right: 25px;
@@ -84,12 +56,6 @@
     cursor: pointer;
     border-radius: 7px;
     transition: transform 250ms;
-}
-
-.button_card:hover{
-    background-image: linear-gradient(to right, #f5d49f 0%, #dba359  51%, #ebbf7d  100%);
-   transition: transform .5s ease;
-   transform: scale(1.1);
 }
 
 @keyframes fadeIn{

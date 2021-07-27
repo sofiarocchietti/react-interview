@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, GET_RECIPE_DETAIL } from './constants'
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, GET_RECIPE_DETAIL, CHANGE_LIKES } from './constants'
 import axios from 'axios'
 
 export function getAllRecipes () {
@@ -58,10 +58,18 @@ export function getRecipeDetail(id) {
     return fetch(`http://localhost:3001/recipes/${id}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(id)
         dispatch({ 
           type: GET_RECIPE_DETAIL, 
           payload: json });
       })
   }
+}
+
+export const changeLikes = (id, numberOfLikes) => dispatch => {
+  console.log('id -> ', id)
+  console.log('numberOfLikes -> ', numberOfLikes)
+  return axios.put(`http://localhost:3001/recipes/${id}/likes`, {numberOfLikes})
+    .then(() => {
+      dispatch({ type: CHANGE_LIKES })
+    })
 }

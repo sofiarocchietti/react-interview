@@ -1,12 +1,12 @@
-.container-nav{
+.footer {
     opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
 	animation-duration: 2s;
-   background-color: transparent;
+   background-color: #f1b6b8;
     box-shadow: 0 0 20px rgb(88, 86, 86);
-    height: 90px;
+    height: 4rem;
     width: 100%;
     top: 0;
     left: 0;
@@ -14,19 +14,35 @@
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    position: fixed;
     justify-content: space-around;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
 }
 
-.container-nav button {
-font-size: 1.5rem;
-/* margin-right: 15rem; */
+.image1 {
+    max-width: 100%;
+    width: 50px;
+    position: relative;
+    top: 8px; 
+    right: 100px;
+ 
 }
 
+.image1:hover{
+    transition: transform .5s ease;
+    transform: scale(1.1);
+}
 
+.image2 {
+    max-width: 100%;
+    width: 50px;
+    position: relative;
+    top: 8px; 
+    left: 100px;
+}
 
-
-
+.image2:hover{
+    transition: transform .5s ease;
+    transform: scale(1.1);
+}
