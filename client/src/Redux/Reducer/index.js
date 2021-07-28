@@ -5,7 +5,6 @@ const initialState = {
     recipeDetail: {},
     backResponse: {},
     isAuthenticated: false,
-    didLike: [{}]
 }
 
 function rootReducer(state = initialState, action) {
@@ -46,17 +45,6 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: action.payload,
-            }
-        }
-
-        case CHANGE_LIKES: {
-            return {
-                ...state,
-                didLike: state.didLike.map(e => {
-                    if (e.id === action.payload.id) {
-                        e = action.payload 
-                    }
-                })
             }
         }
 
