@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Run this project:
+
+*npm install
+*api --> npm start (running on port 3000)
+*client ---> npm start (running on port 3001)
+
+
 ## Recipes Requirements - This project is implemented with React hooks, please use hooks to complete the objectives
 This is a mock recipe site. This site displays a single recipe currently -- Chocolate Chip Cookies.  Please pick and complete 2 of the below 3 sets of requirements.
 
