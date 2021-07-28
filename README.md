@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Run this project:
+## Run this project 🚀:
 * npm install
 * api ---> npm start (runs on port 3000)
 * client ---> npm start (runs on port 3001)
