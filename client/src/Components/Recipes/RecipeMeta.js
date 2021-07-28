@@ -32,7 +32,6 @@ function RecipeMeta ({match}) {
     }
 
     useEffect(() => {
-      console.log('segundo ue', serving.portion)
         setServing({
         ...serving,
         ingredients: recipe.ingredients?.map(ing => ({...ing , amount: (ing.amount * serving.percent) / 100}) )

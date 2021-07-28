@@ -51,7 +51,6 @@ const AddNewRecipe = () => {
       }
 
       const handleStepChange = (e) => {
-        console.log('el step es ', e.target.value);
         setStep(e.target.value)
       }
 
