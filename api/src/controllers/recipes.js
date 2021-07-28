@@ -95,12 +95,13 @@ function incrementAndDecrement (req, res) {
   const { numberOfLikes } = req.body
   if (parseInt(numberOfLikes) !== 0) {
     recipes.map(r => r.id === parseInt(id) && r.likes++)
-    return res.send({didLike: true, id})
+    return res.send(true)
   } else {
     recipes.map(r => r.id === parseInt(id) && r.likes--)
-    return res.send({didLike: false, id})
+    return res.send(false)
   }
 }
+
 
 function deleteRecipe (req, res, next) {
   const {id} = req.params
