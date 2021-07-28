@@ -216,14 +216,9 @@ const AddNewRecipe = () => {
               <label className="text_title_form">Steps:</label>
               <input
                 onChange={handleStepChange}
-                //className={`${errors.step && "danger"}`}
                 type="text"
-                //name="steps"
                 value={step}
               />
-            {/*   {errors.steps && (
-                <p className="danger">{errors.steps}</p>
-                  )}  */}
             </div>
             <button onClick={(e)=> {
               e.preventDefault()
