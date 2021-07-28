@@ -1,10 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Run this project:
-
-*npm install
-*api --> npm start (running on port 3000)
-*client ---> npm start (running on port 3001)
+* npm install
+* api --> npm start (runs on port 3000)
+* client ---> npm start (runs on port 3001)
 
 
 ## Recipes Requirements - This project is implemented with React hooks, please use hooks to complete the objectives
