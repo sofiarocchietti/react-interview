@@ -55,7 +55,7 @@ function RecipeMeta ({match}) {
             <DeleteRecipe id={recipe.id}/>
             <div> 
               <div className='recipe-meta-container-img'> 
-            <img src={recipe.img ? recipe.img : 'image not found'} alt="picture" />
+            <img src={recipe.img ? recipe.img : 'image not found'} alt='not found' />
               </div>
               <Likes id={recipe.id} likes={recipe.likes} />
             </div>

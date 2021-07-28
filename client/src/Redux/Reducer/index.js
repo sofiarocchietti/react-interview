@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, SIGN_UP, LOGOUT, GET_RECIPE_DETAIL, CHANGE_LIKES } from "../Actions/constants";
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, SIGN_UP, LOGOUT, GET_RECIPE_DETAIL} from "../Actions/constants";
 
 const initialState = {
     recipes: [],

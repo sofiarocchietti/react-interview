@@ -117,6 +117,7 @@ const AddNewRecipe = () => {
 
       useEffect(() => {
         input.title !== '' && checkSuccess()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [backResponse])
       
 
