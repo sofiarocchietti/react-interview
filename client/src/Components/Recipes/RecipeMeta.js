@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getRecipeDetail } from '../../Redux/Actions'
-import RecipeIngredients from './RecipeIngredients'
-import RecipeSteps from './RecipeSteps'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecipeDetail, deleteRecipe } from '../../Redux/Actions';
+import RecipeIngredients from './RecipeIngredients';
+import RecipeSteps from './RecipeSteps';
 import Likes from '../Likes/Likes';
-import './RecipeMeta.css'
+import DeleteRecipe from './DeleteRecipe';
+import './RecipeMeta.css';
 
 function RecipeMeta ({match}) {
   const recipe = useSelector((state) => state.recipeDetail)
@@ -24,7 +25,7 @@ function RecipeMeta ({match}) {
             percent: parseInt(e.target.value) * 100 / recipe.servings
         })
     }
-    
+
     useEffect(() => {
         setServing({
         ...serving,
@@ -38,10 +39,12 @@ function RecipeMeta ({match}) {
         {recipe.title && <div>
           <h1>{recipe.title}</h1>
           <div>
+            <DeleteRecipe id={recipe.id}/>
             <div> 
               <div className='recipe-meta-container-img'> 
             <img src={recipe.img ? recipe.img : 'image not found'} alt="picture" />
               </div>
+              <Likes id={recipe.id} likes={recipe.likes} />
             </div>
             <p>
               Time: 
@@ -57,7 +60,6 @@ function RecipeMeta ({match}) {
                 />
             </p>
           </div>
-          <Likes id={recipe.id} likes={recipe.likes} />
           <RecipeIngredients ingredients={serving.ingredients} />
           <RecipeSteps steps={recipe.steps} />
         </div>}

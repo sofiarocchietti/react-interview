@@ -76,11 +76,12 @@ function getAllRecipes (req, res, next) {
 }
 
 function addNewRecipe (req, res, next) {
-  const { title, timeToMake, servings, ingredients, steps, img } = req.body
+  const { title, timeToMake, servings, ingredients, steps, img, likes } = req.body
   if (!title ) return res.status(400).send('Missing arguments')
   //|| !timeToMake || !servings
   recipes.push({
     id: id++,
+    likes,
     title,
     img,
     timeToMake,

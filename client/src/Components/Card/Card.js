@@ -8,7 +8,7 @@ const Card = (props) => {
         <div className='card_container'>
         <h1 className='card_title'>{props.recipe.title}</h1>
         <div className='image'>  
-    <img src={props.recipe.img ? props.recipe.img : 'image not found'} alt="picture" />
+    <img src={props.recipe.img ? props.recipe.img : 'image not found'} alt="picture not found" />
     </div>
         <Likes likes={props.recipe.likes} id={props.recipe.id} />
         <Link to={`/recipes/${props.recipe.id}`}>

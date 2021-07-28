@@ -1,40 +1,17 @@
-import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, GET_RECIPE_DETAIL, CHANGE_LIKES } from './constants'
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, GET_RECIPE_DETAIL, CHANGE_LIKES, DELETE_RECIPE } from './constants';
 import axios from 'axios'
 
 export function getAllRecipes () {
-  return (dispatch) => fetch('http://localhost:3001/recipes')
-    .then((response) => response.json())
-    .then((json) => {
+  return (dispatch) => axios.get('http://localhost:3001/recipes')
+    .then((res) => {
       dispatch({
         type: GET_ALL_RECIPES,
-        payload: json
+        payload: res.data
       })
     })
 }
-
-/* export function createRecipe (recipe) {
-  return (dispatch) => fetch('http://localhost:3001/recipes', {
-    method: 'POST',
-    body: JSON.stringify(recipe),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      dispatch({
-        type: ADD_NEW_RECIPE,
-        payload: json
-      })
-    })
-}
- */
 
 export const addNewRecipe = (recipe) => dispatch => {
-  /* let recipes = JSON.parse(localStorage.getItem('recipes') || '[]')
-  console.log(recipes)
-  localStorage.setItem('recipes', JSON.stringify(recipe)) */
   return axios.post('http://localhost:3001/recipes', recipe)
     .then((response) => {
       dispatch({ type: ADD_NEW_RECIPE, payload: response.data })
@@ -55,21 +32,29 @@ export function verifyUser (obj) {
 
 export function getRecipeDetail(id) {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/recipes/${id}`)
-      .then((response) => response.json())
-      .then((json) => {
+    return axios.get(`http://localhost:3001/recipes/${id}`)
+      .then((res) => {
         dispatch({ 
           type: GET_RECIPE_DETAIL, 
-          payload: json });
+          payload: res.data });
       })
   }
 }
 
 export const changeLikes = (id, numberOfLikes) => dispatch => {
-  console.log('id -> ', id)
-  console.log('numberOfLikes -> ', numberOfLikes)
   return axios.put(`http://localhost:3001/recipes/${id}/likes`, {numberOfLikes})
     .then(() => {
-      dispatch({ type: CHANGE_LIKES })
+      dispatch({ 
+        type: CHANGE_LIKES 
+      })
     })
+}
+
+export const deleteRecipe = (id) => dispatch => {
+  return axios.delete(`http://localhost:3001/recipes/${id}`)
+  .then(() => {
+    dispatch({
+      type: DELETE_RECIPE
+    })
+  })
 }

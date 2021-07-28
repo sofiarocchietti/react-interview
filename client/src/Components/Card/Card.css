@@ -24,6 +24,7 @@
 .image img {
     display: block;
     position: absolute;
+    margin-top: 2rem;
     top: 105px;
     left: 57px;
     border-radius: 16px;
