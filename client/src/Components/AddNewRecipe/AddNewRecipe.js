@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './AddNewRecipe.css';
+import { useHistory } from 'react-router-dom';
 import { addNewRecipe } from '../../Redux/Actions';
 import swal from 'sweetalert';
 import { validate } from './errors';
+import './AddNewRecipe.css';
 
 const AddNewRecipe = () => {
   const dispatch = useDispatch()
+  let history = useHistory()
     const [input, setInput] = useState({
         title: '',
         likes: 0,
@@ -65,7 +67,8 @@ const AddNewRecipe = () => {
         const handleSubmit = async (e) => {
           e.preventDefault()
            if(Object.keys(errors).length === 0)
-            {dispatch(addNewRecipe(input))
+            {
+             await dispatch(addNewRecipe(input))
               swal({
                 icon: "success",
                 title: "Your delicious recipe has been created!",
@@ -81,6 +84,7 @@ const AddNewRecipe = () => {
               ingredients: [],
               steps: []
               })
+             setTimeout(()=> {history.push('/home')}, 2000)
             } else {
               swal({
                 icon: "error",

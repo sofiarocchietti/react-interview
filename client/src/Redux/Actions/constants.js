@@ -5,3 +5,4 @@ export const ADD_USER = 'ADD_USER';
 export const VERIFY_USER = 'VERIFY_USER'; 
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 export const CHANGE_LIKES = 'CHANGE_LIKES';
+export const DELETE_RECIPE = 'DELETE_RECIPE';
