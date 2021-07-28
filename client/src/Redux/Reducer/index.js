@@ -1,10 +1,11 @@
-import { GET_ALL_RECIPES, VERIFY_USER, GET_RECIPE_DETAIL } from "../Actions/constants";
+import { GET_ALL_RECIPES, ADD_NEW_RECIPE, VERIFY_USER, SIGN_UP, LOGOUT, GET_RECIPE_DETAIL, CHANGE_LIKES } from "../Actions/constants";
 
 const initialState = {
     recipes: [],
-    ingredients: [],
     recipeDetail: {},
-    user: {}
+    backResponse: {},
+    isAuthenticated: false,
+    didLike: [{}]
 }
 
 function rootReducer(state = initialState, action) {
@@ -15,18 +16,50 @@ function rootReducer(state = initialState, action) {
                 recipes: action.payload
               }
         }
+        case ADD_NEW_RECIPE: {
+            return {
+                ...state,
+                backResponse: action.payload
+              }
+        }
         case GET_RECIPE_DETAIL: 
           return {
-            ...state,
+                 ...state,
            recipeDetail: action.payload
           }
         
         case VERIFY_USER: {
             return {
                 ...state,
-                user: action.payload
+                isAuthenticated: action.payload,
             }
         }
+
+        case SIGN_UP: {
+            return {
+                ...state,
+                isAuthenticated: action.payload,
+            }
+        }
+
+        case LOGOUT: {
+            return {
+                ...state,
+                isAuthenticated: action.payload,
+            }
+        }
+
+        case CHANGE_LIKES: {
+            return {
+                ...state,
+                didLike: state.didLike.map(e => {
+                    if (e.id === action.payload.id) {
+                        e = action.payload 
+                    }
+                })
+            }
+        }
+
         default:
          return state 
     }

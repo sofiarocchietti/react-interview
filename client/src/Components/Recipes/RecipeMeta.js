@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipeDetail, deleteRecipe } from '../../Redux/Actions';
+import { getRecipeDetail} from '../../Redux/Actions';
 import RecipeIngredients from './RecipeIngredients';
 import RecipeSteps from './RecipeSteps';
 import Likes from '../Likes/Likes';
 import DeleteRecipe from './DeleteRecipe';
+import swal from 'sweetalert';
 import './RecipeMeta.css';
 
 function RecipeMeta ({match}) {
@@ -12,11 +13,15 @@ function RecipeMeta ({match}) {
   const dispatch = useDispatch()
   const [serving, setServing] = useState({})
 
-    useEffect(() => {
-        dispatch(getRecipeDetail(match.params.id))
+    useEffect (() => {
+        const fetchData = async () => {
+         await dispatch(getRecipeDetail(match.params.id))
         recipe.id && setServing({ portion: recipe.servings, percent: 100, ingredients: recipe.ingredients})
+        }
+          fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [recipe.id]); 
+    
     
     const changeServings = (e) => {
         setServing({
@@ -27,10 +32,19 @@ function RecipeMeta ({match}) {
     }
 
     useEffect(() => {
+      console.log('segundo ue', serving.portion)
         setServing({
         ...serving,
         ingredients: recipe.ingredients?.map(ing => ({...ing , amount: (ing.amount * serving.percent) / 100}) )
     }) 
+    serving.portion < 1 && swal({
+      icon: "error",
+      title: 'You should add at least one seving',
+      text: "  ",
+      button: null,
+      timer: 1500
+    })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     },[serving.portion])
 
   return (
@@ -55,13 +69,19 @@ function RecipeMeta ({match}) {
               <input
                 type='number'
                 name='serving'
+                min='1'
                 onChange={changeServings}
                 value={serving.portion}
+                //defaultValue={serving.portion}
                 />
             </p>
           </div>
-          <RecipeIngredients ingredients={serving.ingredients} />
-          <RecipeSteps steps={recipe.steps} />
+          {serving.portion > 0 &&
+            <>
+              <RecipeIngredients ingredients={serving.ingredients} />
+              <RecipeSteps steps={recipe.steps} />
+            </>
+          }
         </div>}
       </div>
     </div>
