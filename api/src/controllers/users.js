@@ -13,24 +13,30 @@ function getAllUsers(req, res) {
 
 function addNewUser(req, res) {
     const { email, password, name } = req.body;
-    if (!email || !password || !name) return res.status(400).send('Missing arguments')
+    if (!email || !password || !name) return res.send('Missing arguments')
     const user = users.find(u => u.email === email)
-    if (user) return res.status(400).send('That mail already exists')
+    if (user) return res.send('This email is already registered')
     users.push ({
         id: id++,
         name,
         email,
         password
     })
-    res.send(users)
+    res.send(true)
 }
 
 function verifyUser (req, res) {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).send('Missing arguments')
-    const user = users.find(u => u.email === email)
-    if (!user) return res.status(400).send('User not found')
-    if (user.password === password) return res.send(user)
+    const { email, password } = req.query;
+    if (!email || !password) {
+        return res.send('Missing arguments')
+    } 
+    const user = users.filter(u => u.email === email)
+    if (!user.length){
+        return res.send('User not found')
+    } 
+    if (user[0].password === password) {
+        return res.send(true)
+    }
 }
 
 module.exports = {

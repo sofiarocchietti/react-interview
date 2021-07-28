@@ -77,8 +77,7 @@ function getAllRecipes (req, res, next) {
 
 function addNewRecipe (req, res, next) {
   const { title, timeToMake, servings, ingredients, steps, img, likes } = req.body
-  if (!title ) return res.status(400).send('Missing arguments')
-  //|| !timeToMake || !servings
+  if (!title || !timeToMake || !servings) return res.send({message: 'Some ingredients are missing :(', code: 400})
   recipes.push({
     id: id++,
     likes,
@@ -88,9 +87,7 @@ function addNewRecipe (req, res, next) {
     servings,
     ingredients,
   steps})
-  // let recipeNew = {...newRecipe, ingredients2}
-  res.send(recipes)
-  console.log(recipes)
+  return res.send({message: 'Yout delicious recipe has been created!', code: 200})
 }
 
 function incrementAndDecrement (req, res) {
@@ -98,17 +95,18 @@ function incrementAndDecrement (req, res) {
   const { numberOfLikes } = req.body
   if (parseInt(numberOfLikes) !== 0) {
     recipes.map(r => r.id === parseInt(id) && r.likes++)
+    return res.send({didLike: true, id})
   } else {
     recipes.map(r => r.id === parseInt(id) && r.likes--)
+    return res.send({didLike: false, id})
   }
-  return res.send('Likes updated')
 }
 
 function deleteRecipe (req, res, next) {
   const {id} = req.params
   const index = recipes.findIndex(a => a.id === parseInt(id))
   if (!index) {
-    return res.status(400).send('ID not found')
+    return res.send('ID not found')
   }
   recipes.splice(index, 1)
   return res.json(recipes)
@@ -119,7 +117,7 @@ function editRecipe (req, res) {
   const { title, timeToMake, servings, ingredients, steps } = req.body
   const recipe = recipes.find(a => a.id === parseInt(id))
   if (!recipe) {
-    return res.status(400).send('ID not found')
+    return res.send('ID not found')
   }
   if (recipe) {
     recipe.title = title || recipe.title

@@ -1,8 +1,10 @@
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const ADD_NEW_RECIPE = 'ADD_NEW_RECIPE'; 
 export const CHANGE_RECIPE_SERVING_SIZE = 'CHANGE_RECIPE_SERVING_SIZE';
+export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 export const ADD_USER = 'ADD_USER';
 export const VERIFY_USER = 'VERIFY_USER'; 
-export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
+export const SIGN_UP = 'SIGN_UP';
+export const LOGOUT = 'LOGOUT';
 export const CHANGE_LIKES = 'CHANGE_LIKES';
 export const DELETE_RECIPE = 'DELETE_RECIPE';

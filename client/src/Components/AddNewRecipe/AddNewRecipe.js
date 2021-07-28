@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { addNewRecipe } from '../../Redux/Actions';
 import swal from 'sweetalert';
@@ -8,6 +8,7 @@ import './AddNewRecipe.css';
 
 const AddNewRecipe = () => {
   const dispatch = useDispatch()
+  const {backResponse} = useSelector(state=> state)
   let history = useHistory()
     const [input, setInput] = useState({
         title: '',
@@ -43,7 +44,6 @@ const AddNewRecipe = () => {
       }
 
       const handleIngredientChange = (e) => {
-        console.log('el value es ', e.target.value);
         setIngredient({
           ...ingredient,
           [e.target.name]: e.target.value
@@ -57,25 +57,38 @@ const AddNewRecipe = () => {
 
       
       const deleteIngredient = (e) => {
-        // elimino del array de input.ingredients
         e.preventDefault()
         setInput({
           ...input,
-          ingredients: input.ingredients.filter((objeto, index) => objeto[index] !== e.target.value)
-        })}
+          ingredients: input.ingredients.filter((obj) => obj.name !== e.target.value)
+        })
+      }
 
-        const handleSubmit = async (e) => {
-          e.preventDefault()
-           if(Object.keys(errors).length === 0)
-            {
-             await dispatch(addNewRecipe(input))
+      const deleteStep = (e) => {
+        e.preventDefault()
+        setInput({
+          ...input,
+          steps: input.steps.filter(s => s !== e.target.value)
+        })
+      }
+
+      const checkSuccess = () => {
+        backResponse.code === 200 ?
               swal({
                 icon: "success",
-                title: "Your delicious recipe has been created!",
+                title: backResponse.message,
                 text: "  ",
                 button: null,
                 timer: 2000
-            });
+            })
+            : 
+            swal({
+              icon: "error",
+              title: backResponse.message,
+              text: "  ",
+              button: null,
+              timer: 2000
+          });
             setInput({
               title: '',
               img: '',
@@ -85,16 +98,27 @@ const AddNewRecipe = () => {
               steps: []
               })
              setTimeout(()=> {history.push('/home')}, 2000)
+      }
+
+        const handleSubmit = async (e) => {
+          e.preventDefault()
+           if(Object.keys(errors).length === 0)
+            {
+             await dispatch(addNewRecipe(input))
             } else {
               swal({
                 icon: "error",
-                title: "Some ingredients are missing :(",
+                title: backResponse.message,
                 text: "  ",
                 button: null,
                 timer: 2000
             });
             }   
         }
+
+      useEffect(() => {
+        input.title !== '' && checkSuccess()
+      }, [backResponse])
       
 
     return (
@@ -186,7 +210,7 @@ const AddNewRecipe = () => {
             </button>
             <div className= 'options'>
               {input.ingredients?.map((e, index) =>
-                <button className='ing_button' onClick={deleteIngredient} value={index}>{e.name} {e.amount} {e.measure}</button>
+                <button className='ing_button' key={index} value={e.name} onClick={deleteIngredient}>{e.name} {e.amount} {e.measure}</button>
                 )}
             </div>
             <div>
@@ -215,7 +239,7 @@ const AddNewRecipe = () => {
             
             <div>
                 {input.steps?.map((e, index) =>
-                <button className='step_button' onClick={handleStepChange} value={index}>{e}</button>
+                <button className='step_button' key={index} onClick={deleteStep} value={e}>{e}</button>
                 )}  
             </div>
             <div></div>

@@ -7,7 +7,7 @@ const Cards = ({recipes}) => {
             <div className='display_recipes'>
           {recipes.map((recipe, index) => 
           (
-            <Card index={index} recipe={recipe}/>
+            <Card index={index} recipe={recipe} key={index}/>
           ))}
         </div>
       
